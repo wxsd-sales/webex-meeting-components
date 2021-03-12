@@ -1,0 +1,56 @@
+.meeting {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .videos {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+
+    .inMeeting {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .interstitial {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      .interstitial-meeting-info {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 25%;
+
+        background-color: rgba(255, 255, 255, 0.8);
+      }
+
+      .interstitial-media {
+        flex-grow: 1;
+      }
+    }
+  }
+
+  .controls {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 95%;
+    height: 5%;
+    margin-bottom: 1rem;
+  }
+}

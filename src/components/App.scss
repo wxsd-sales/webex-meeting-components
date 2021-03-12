@@ -1,0 +1,46 @@
+.app {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  height: 88%;
+  background-color: $white;
+  border: 0.15rem solid;
+  border-color: $white;
+  border-radius: 1rem;
+
+  .content {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .boxes {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+  }
+
+  .left {
+    width: 45%;
+    height: 90%;
+    margin: 1rem 2rem;
+  }
+
+  .line {
+    height: 93%;
+    border-left: 1px solid $md-gray-20;
+  }
+
+  .right {
+    width: 45%;
+    height: 90%;
+    margin: 1rem 2rem;
+  }
+}
