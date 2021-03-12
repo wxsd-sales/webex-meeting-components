@@ -18,5 +18,9 @@
     "react": {
       "version": "detect"
     }
+  },
+  "rules": {
+    "react/display-name": [0],
+    "@typescript-eslint/no-explicit-any": [0]
   }
 }

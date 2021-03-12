@@ -5,16 +5,22 @@
     "sourceMap": true,
     "outDir": "./dist",
     "jsx": "react",
+    "noEmitOnError": false,
+    "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
     "typeRoots": [
 			"./types",
-			"node_modules/@types"
 		]
   },
-  "exclude": ["node_modules"],
-  "include": [
-    "./src/**/*",
-    "./data/**/*",
-    "./types/**/*",
-  ]
+  "awesomeTypescriptLoaderOptions": {
+    "useCache": true,
+    "transpileOnly": true,
+    "useTranspileModule": true,
+    "reportFiles": [
+      "src/**/*.{ts,tsx}"
+    ],
+    "files": [
+      "src/index.tsx"
+    ]
+  },
 }
