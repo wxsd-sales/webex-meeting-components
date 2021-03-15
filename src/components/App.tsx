@@ -10,46 +10,69 @@ export default class App extends Component {
   adapter: any;
   state: any;
   webex: any;
-  token: null;
+  token: string;
 
   constructor(props) {
     super(props);
-    this.token = null;
+    this.token = "";
     this.state = {
       adapterConnected: false
-    };
-      this.webex = new Webex({
-        credentials: 'NWIxODQ5OTEtZTlkMi00MGE1LWE4YzMtODFiOTliYTZhY2YwZDliMTU4OWQtZWJl_PF84_consumer'
-        // config: {
-          // credentials: {
-          //   client_id: 'Ca9a1906424f85574202b13051a43d7fb865ca4138b6a7aa27c343c7845aed36b',
-          //   client_secret: '74978618c8a618662fdf4dedb398c6c50f14889b55fe9c2512385aed1dfe55e9',
-          //   redirect_uri: 'https://f2455d68b1d2.ngrok.io',
-          //   scope: 'spark:all spark:kms'
-          // }
-        // }
-  });
-  
-    this.adapter = new WebexSDKAdapter(this.webex);
+    }
+    this.webex = new Webex({
+      config: {
+        credentials: {
+          client_id: 'Ca9a1906424f85574202b13051a43d7fb865ca4138b6a7aa27c343c7845aed36b',
+          redirect_uri: 'https://webexmeeting.ngrok.io',
+          scope: 'spark:all spark:kms'
+        },
+      }
+    }); 
   }
 
-  async componentDidMount() {
-    // if(!JSON.parse(localStorage.getItem('token'))){
-    //   await this.webex.authorization.initiateImplicitGrant();
-    //   localStorage.setItem('token', this.webex.credentials.supertoken);
-    // }
-    
-    // console.log(JSON.parse(localStorage.getItem('token')));
-    // await this.webex.on('ready', () => {
-    //   console.log(JSON.parse(localStorage.getItem('token')));
-    // })
-
-    await this.adapter.connect();
-    // Once adapter connects, set our app state to ready.
+  adapterIsConnected() {
     this.setState({adapterConnected: true});
   }
 
-  async componentWillUnmount() {
+  async initializeAdapter(): Promise<any> {
+    console.log('ADAPTER IS INITIATED')
+    this.adapter = new WebexSDKAdapter(this.webex);
+    await this.adapter.connect();
+
+    this.webex.off('change:canAuthorize', this.initializeAdapter);
+  }
+
+  async registerSDK(callback): Promise<any> {
+    if(this.webex.canAuthorize) {
+      await this.initializeAdapter();
+      callback();
+    } else {
+      this.webex.on('change:canAuthorize', this.initializeAdapter());
+    }
+  }
+
+  async validateToken(callback) {
+    if(localStorage.getItem('token')) {
+      await this.registerSDK(callback);
+    } else if (this.webex.credentials.supertoken) {
+      localStorage.setItem('token', this.webex.credentials.supertoken);
+      await this.registerSDK(callback);
+    } else {
+      await this.webex.authorization.initiateImplicitGrant();
+    }
+  }
+
+  async requestToken(callback) {
+    // Halt till the module is loaded properly
+    await this.webex.on('ready', async () => {
+      await this.validateToken(callback);
+    });
+  }
+
+  async componentDidMount(): Promise<any> {
+    await this.requestToken(this.adapterIsConnected.bind(this));
+  }
+
+  async componentWillUnmount(): Promise<any> {
     // On teardown, disconnect the adapter.
     await this.adapter.disconnect();
   }
