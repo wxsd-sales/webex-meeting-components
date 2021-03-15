@@ -1,0 +1,25 @@
+.md-modal__content {
+  min-height: 15rem !important;
+  margin-top: 1rem;
+
+  .md-modal__body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .md-input__wrapper {
+    display: flex;
+    justify-content: center;
+    padding-top: 1rem;
+  }
+
+  .md-input-container {
+    width: 50rem;
+    height: 5rem;
+  }
+
+  .buttons {
+    width: 20rem;
+  }
+}

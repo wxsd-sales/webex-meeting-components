@@ -1,5 +1,5 @@
 import React, { useEffect, useState, Component } from 'react';
-import { Components, Options, Code } from './';
+import { Components, Options, Code, Modal } from './';
 import { Spinner } from '@momentum-ui/react';
 import { WebexDataProvider, WebexInterstitialMeeting, WebexInMeeting } from '@webex/components';
 import WebexSDKAdapter from '@webex/sdk-component-adapter';
@@ -14,71 +14,43 @@ export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      adapterConnected: false
+      adapterConnected: false,
+      popModal: false,
     }
-    this.webex = new Webex({
-      config: {
-        credentials: {
-          client_id: process.env.CLIENT_ID,
-          redirect_uri: 'https://webexmeeting.ngrok.io',
-          scope: 'spark:all spark:kms'
-        },
-      }
-    })
+    this.webex = null;
   }
 
-  reInitiateWebex(token: string): void {
-    const newToken = token.replace('Bearer ', '');
+  async initWebex(token: string): Promise<any> {
     this.webex = new Webex({
-      credentials: newToken
+      credentials: token
     });
-  }
 
-  adapterIsConnected(): void {
-    this.setState({ adapterConnected: true });
-  }
+    this.setState({
+      popModal: false
+    });
 
-  async initializeAdapter(): Promise<any> {
     try {
       this.adapter = new WebexSDKAdapter(this.webex);
       await this.adapter.connect();
-      this.webex.off('change:canAuthorize', this.initializeAdapter);
+      this.setState({
+        adapterConnected: true,
+      });
+      localStorage.setItem('token', token);
+    } catch (error) {
+      this.setState({
+        popModal: true
+      });
     }
-    catch (e) {
-      console.log(e)
-    }
-  }
-
-  async registerSDK(): Promise<any> {
-    if (this.webex.canAuthorize) {
-      await this.initializeAdapter();
-    } else {
-      this.webex.on('change:canAuthorize', this.initializeAdapter.bind(this));
-    }
-  }
-
-  async validateToken(): Promise<any> {
-    if (localStorage.getItem('token')) {
-      this.reInitiateWebex(localStorage.getItem('token'));
-      await this.registerSDK();
-      this.adapterIsConnected();
-    } else if (this.webex.credentials.supertoken) {
-      localStorage.setItem('token', this.webex.credentials.supertoken);
-      await this.registerSDK();
-      this.adapterIsConnected();
-    } else {
-      await this.webex.authorization.initiateImplicitGrant();
-    }
-  }
-
-  async requestToken(callback) {
-    await this.webex.on('ready', async () => {
-      await this.validateToken();
-    });
   }
 
   async componentDidMount(): Promise<any> {
-    await this.requestToken(this.adapterIsConnected.bind(this));
+    if (!localStorage.getItem('token')) {
+      this.setState({
+        popModal: true
+      })
+    } else {
+      await this.initWebex(localStorage.getItem('token'));
+    }
   }
 
   async componentWillUnmount(): Promise<any> {
@@ -88,8 +60,8 @@ export default class App extends Component {
 
   render(): JSX.Element {
     return <div className="app">
-      {
-        this.state.adapterConnected ? (
+      {this.state.popModal ?
+        <Modal initWebex={this.initWebex.bind(this)} /> : this.state.adapterConnected ? (
           <WebexDataProvider adapter={this.adapter} >
             <div className="content">
               <h1>Webex Meetings Components </h1>
@@ -102,10 +74,8 @@ export default class App extends Component {
                 <div className="right">
                   <Components meetingsAdapter={this.adapter.meetingsAdapter} />
                 </div>
-              </div>
-            </div>
-          </WebexDataProvider>) : <Spinner />
+              </WebexDataProvider>) : <Spinner />
       }
-    </div>
+            </div>
   }
 }
