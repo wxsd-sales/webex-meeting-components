@@ -37,17 +37,8 @@ const Options = (props: Props): JSX.Element => {
 
 const submit = (event) => {
   event.preventDefault();
-
-  if(destination === "") {
-    setDestIsRequired({
-      error: 'Meeting Destination is required!',
-      type: 'error'
-    });
-    setButtonDisability(true);
-  } else {
-    props.selectMeetingDestination(destination);
-    enableMeetingInfoOption(true);
-  }
+  props.selectMeetingDestination(destination);
+  enableMeetingInfoOption(true);
 }
 
 const handleDestinationChange = (event) => {
