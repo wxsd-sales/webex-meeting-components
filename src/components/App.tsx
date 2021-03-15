@@ -10,11 +10,9 @@ export default class App extends Component {
   adapter: any;
   state: any;
   webex: any;
-  token: string;
 
   constructor(props) {
     super(props);
-    this.token = "";
     this.state = {
       adapterConnected: false
     }
@@ -26,45 +24,56 @@ export default class App extends Component {
           scope: 'spark:all spark:kms'
         },
       }
-    }); 
+    })
   }
 
-  adapterIsConnected() {
+  reInitiateWebex(token: string): void {
+    const newToken = token.replace('Bearer ','');
+      this.webex = new Webex({
+        credentials: newToken
+      });
+    }
+
+  adapterIsConnected(): void {
     this.setState({adapterConnected: true});
   }
 
   async initializeAdapter(): Promise<any> {
-    console.log('ADAPTER IS INITIATED')
-    this.adapter = new WebexSDKAdapter(this.webex);
-    await this.adapter.connect();
-
-    this.webex.off('change:canAuthorize', this.initializeAdapter);
-  }
-
-  async registerSDK(callback): Promise<any> {
-    if(this.webex.canAuthorize) {
-      await this.initializeAdapter();
-      callback();
-    } else {
-      this.webex.on('change:canAuthorize', this.initializeAdapter());
+    try {
+      this.adapter = new WebexSDKAdapter(this.webex);
+      await this.adapter.connect();
+      this.webex.off('change:canAuthorize', this.initializeAdapter);
+    }
+    catch(e) {
+      console.log(e)
     }
   }
 
-  async validateToken(callback) {
+  async registerSDK(): Promise<any> {
+    if(this.webex.canAuthorize) {
+      await this.initializeAdapter();
+    } else {
+      this.webex.on('change:canAuthorize', this.initializeAdapter.bind(this));
+    }
+  }
+
+  async validateToken(): Promise<any> {
     if(localStorage.getItem('token')) {
-      await this.registerSDK(callback);
+      this.reInitiateWebex(localStorage.getItem('token'));
+      await this.registerSDK();
+      this.adapterIsConnected();
     } else if (this.webex.credentials.supertoken) {
       localStorage.setItem('token', this.webex.credentials.supertoken);
-      await this.registerSDK(callback);
+      await this.registerSDK();
+      this.adapterIsConnected();
     } else {
       await this.webex.authorization.initiateImplicitGrant();
     }
   }
 
   async requestToken(callback) {
-    // Halt till the module is loaded properly
     await this.webex.on('ready', async () => {
-      await this.validateToken(callback);
+      await this.validateToken();
     });
   }
 
