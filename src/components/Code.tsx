@@ -1,11 +1,6 @@
-import React, {Children, useContext, useState} from 'react';
-import ReactDOM from 'react-dom';
+import React from 'react';
 import {connect} from 'react-redux';
 import {CodeBlock, tomorrow} from "react-code-blocks";
-import useMeetingDestination from '../hooks/useMeetingDestination';
-import {WebexMeetingInfo, WebexLocalMedia, WebexInMeeting, WebexMeetingControls, WebexMeetingControl} from '@webex/components';
-import {Spinner,Button, Icon} from '@momentum-ui/react';
-
 interface Props {
   meetingDestination: string,
   meetingInfoIsDisplayed: boolean,

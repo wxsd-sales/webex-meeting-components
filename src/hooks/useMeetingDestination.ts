@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react';
 import {concatMap} from 'rxjs/operators';
 
-export default (meetingDestination, meetingsAdapter: any): any => {
+export default (meetingDestination: string, meetingsAdapter: any): any => { // eslint-disable-line @typescript-eslint/explicit-module-boundary-types
   const emptyMeeting = {
     title: null,
     localAudio: null,

@@ -1,9 +1,8 @@
-import React, {Children, useContext, useState, useEffect} from 'react';
-import ReactDOM from 'react-dom';
+import React from 'react';
 import {connect} from 'react-redux';
 import useMeetingDestination from '../hooks/useMeetingDestination';
 import {WebexMeetingInfo, WebexLocalMedia, WebexInMeeting, WebexMeetingControls, WebexMeetingControl} from '@webex/components';
-import {Spinner,Button, Icon} from '@momentum-ui/react';
+import {Spinner} from '@momentum-ui/react';
 import {toggleMeetingState} from '../actions/status';
 
 interface Props {
