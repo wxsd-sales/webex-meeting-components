@@ -1,0 +1,1 @@
+(self.webpackChunkWebexComponents=self.webpackChunkWebexComponents||[]).push([[6495],{14970:e=>{"use strict";function t(e){e.languages.ini={comment:/^[ \t]*[;#].*$/m,selector:/^[ \t]*\[.*?\]/m,constant:/^[ \t]*[^\s=]+?(?=[ \t]*=)/m,"attr-value":{pattern:/=.*/,inside:{punctuation:/^[=]/}}}}e.exports=t,t.displayName="ini",t.aliases=[]}}]);
