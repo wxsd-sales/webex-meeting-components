@@ -16,7 +16,7 @@
     <a href="https://github.com/WXPD-Sales/WebexMeetingDemo"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/WXPD-Sales/WebexMeetingDemo">View Demo - TBD </a>
+    <a href="https://wxpd-sales.github.io/WebexMeetingDemo/">View Demo</a>
     ·
     <a href="https://github.com/WXPD-Sales/WebexMeetingDemo/issues">Report Bug</a>
     ·
@@ -50,7 +50,7 @@
 
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+[![Product Name Screen Shot][product-screenshot]](https://wxpd-sales.github.io/WebexMeetingDemo/)
 
 In this demo we tried to show you the simplicity of embeding Webex Meeting experience into your complex react application with only few lines of code!
 
