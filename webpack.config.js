@@ -14,7 +14,6 @@ module.exports = smp.wrap({
    app: ["./src/index.tsx", path.resolve(__dirname, './src/styles/index.scss')]
   },
   target: "web",
-  mode: "development",
   stats: 'errors-only',
   output: {
     path: path.resolve(__dirname, "./dist"),
