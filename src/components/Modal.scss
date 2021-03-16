@@ -15,11 +15,30 @@
   }
 
   .md-input-container {
-    width: 50rem;
-    height: 5rem;
+    width: 30rem;
+
+    .md-input {
+      font-size: 0.75rem;
+    }
+
+    @media (min-width: 64rem) {
+      width: 50rem;
+    }
   }
 
   .buttons {
-    width: 20rem;
+    padding-right: 2rem;
+
+    button {
+      font-size: 0.75rem;
+
+      @media (min-width: 64rem) {
+        font-size: 1rem;
+      }
+    }
+
+    @media (min-width: 64rem) {
+      padding-right: 5rem;
+    }
   }
 }

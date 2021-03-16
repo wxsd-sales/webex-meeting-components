@@ -1,5 +1,8 @@
 .options {
-  min-height: 14rem;
+  height: 30%;
+  * {
+    font-size: 0.75rem;
+  }
 
   .checkBoxes {
     display: flex;

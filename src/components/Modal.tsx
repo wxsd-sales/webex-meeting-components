@@ -54,6 +54,7 @@ export default (props: Props): JSX.Element => {
         show={showModal}
         ref={newModal => modal = newModal}
         htmlId="modal"
+        escapeExits={false}
         focusDialog={false}
         >
         <ModalHeader 
