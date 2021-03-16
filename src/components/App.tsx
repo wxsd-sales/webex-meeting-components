@@ -1,17 +1,17 @@
-import React, { useEffect, useState, Component } from 'react';
-import { Components, Options, Code, Modal } from './';
-import { Spinner } from '@momentum-ui/react';
-import { WebexDataProvider, WebexInterstitialMeeting, WebexInMeeting } from '@webex/components';
+import React, {Component} from 'react';
+import {Components, Options, Code, Modal} from './';
+import {Spinner} from '@momentum-ui/react';
+import {WebexDataProvider} from '@webex/components';
 import WebexSDKAdapter from '@webex/sdk-component-adapter';
-import useMeetingDestination from '../hooks/useMeetingDestination';
 import Webex from 'webex';
 
+interface Props {} // eslint-disable-line @typescript-eslint/no-empty-interface
 export default class App extends Component {
   adapter: any;
   state: any;
   webex: any;
 
-  constructor(props) {
+  constructor(props: Props) {
     super(props);
     this.state = {
       adapterConnected: false,

@@ -1,8 +1,5 @@
-import React, {Children, useContext, useState} from 'react';
-import ReactDOM from 'react-dom';
+import React, {useState} from 'react';
 import {connect} from 'react-redux';
-import useMeetingDestination from '../hooks/useMeetingDestination';
-import {WebexMeetingInfo, WebexLocalMedia, WebexInMeeting, WebexMeetingControls, WebexMeetingControl} from '@webex/components';
 import {CheckboxGroup, Checkbox, Input, Button} from '@momentum-ui/react';
 import * as OPTIONS from '../constants/options';
 import {toggleMeetingInfo, toggleMeetingControls, selectMeetingDestination} from '../actions/options';

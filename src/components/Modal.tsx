@@ -18,8 +18,6 @@ export default (props: Props): JSX.Element => {
   const [token, updateToken] = useState('');
   const [buttonIsDisabled, setButtonDisability] = useState(true);
 
-  let modal;
-
   const submit = async (event): Promise<any> => {
     event.preventDefault();
     await props.initWebex(token);
@@ -52,7 +50,6 @@ export default (props: Props): JSX.Element => {
         size="large"
         onHide={() => toggleModal(false)}
         show={showModal}
-        ref={newModal => modal = newModal}
         htmlId="modal"
         escapeExits={false}
         focusDialog={false}
