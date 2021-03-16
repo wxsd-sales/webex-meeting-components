@@ -16,7 +16,7 @@ module.exports = smp.wrap({
   target: "web",
   stats: 'errors-only',
   output: {
-    path: path.resolve(__dirname, "./dist"),
+    path: path.resolve(__dirname, "./docs"),
     filename: 'bundle.js',
   },
   resolve: {
@@ -67,12 +67,12 @@ module.exports = smp.wrap({
     ],
   },
   devServer: {
-    contentBase: path.join(__dirname, './dist'),
+    contentBase: path.join(__dirname, './docs'),
   },
   plugins: [
     new Dotenv(),
     new HtmlWebpackPlugin({
-      path: path.resolve(__dirname, "./dist"),
+      path: path.resolve(__dirname, "./docs"),
       template: path.resolve(__dirname, "src", "index.html"),
     }),
     new webpack.ProvidePlugin({

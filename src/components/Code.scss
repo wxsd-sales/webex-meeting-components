@@ -1,9 +1,21 @@
 .code {
-  height: 30.5rem;
+  display: none;
+
+  @media (min-height: 38rem) {
+    display: block;
+    height: 15rem;
+  }
+
+  @media (min-height: 55rem) {
+    display: block;
+    height: 30rem;
+  }
+
   overflow-y: auto;
 
   code {
     width: 100%;
+    font-size: 0.75rem !important;
     background-color: $md-gray-20;
   }
 }
