@@ -7,7 +7,8 @@
   "license": "MIT",
   "private": null,
   "scripts": {
-    "start": "nodemon node_modules/.bin/webpack serve"
+    "start": "nodemon node_modules/.bin/webpack serve --mode=development",
+    "build": "webpack --mode=production"
   },
   "devDependencies": {
     "@types/jest": "^26.0.19",
