@@ -8,8 +8,7 @@
   "private": null,
   "scripts": {
     "build": "webpack --mode=production",
-    "start": "nodemon node_modules/.bin/webpack serve --mode=development",
-    "prepare": "husky install"
+    "start": "nodemon node_modules/.bin/webpack serve --mode=development"
   },
   "devDependencies": {
     "@types/jest": "^26.0.19",
