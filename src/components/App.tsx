@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Components, Options, Code, Modal} from './';
-import {Spinner} from '@momentum-ui/react';
+import {Spinner, Button, Icon} from '@momentum-ui/react';
 import {WebexDataProvider} from '@webex/components';
 import WebexSDKAdapter from '@webex/sdk-component-adapter';
 import Webex from 'webex';
@@ -10,6 +10,7 @@ export default class App extends Component {
   adapter: any;
   state: any;
   webex: any;
+  githubPage: string;
 
   constructor(props: Props) {
     super(props);
@@ -18,6 +19,7 @@ export default class App extends Component {
       popModal: false,
     }
     this.webex = null;
+    this.githubPage = "https://github.com/WXSD-Sales/WebexMeetingDemo";
   }
 
   async initWebex(token: string): Promise<any> {
@@ -64,7 +66,12 @@ export default class App extends Component {
       <Modal initWebex={this.initWebex.bind(this)} /> : this.state.adapterConnected ? (
       <WebexDataProvider adapter={this.adapter} >
         <div className="content">
-          <h1>Webex Meetings Components </h1>
+          <div className="header">
+            <h1>Webex Meetings Components </h1>
+            <Button circle color="blue" onClick={() => {window.open(this.githubPage, '_blank')}}>
+              <Icon name="info_18" />  
+            </Button >
+          </div>
           <div className="boxes">
             <div className="left">
               <Options />
