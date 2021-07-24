@@ -50,7 +50,7 @@
 
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://wxsd-sales.github.io/WebexMeetingDemo/)
+[![Product Name Screen Shot][product-screenshot]](https://www.loom.com/share/1999193127e245dd802ddd4b4dd249f4)
 
 In this demo we tried to show you the simplicity of embeding Webex Meeting experience into your complex react application with only few lines of code!
 
