@@ -1,10 +1,3 @@
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
-
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
@@ -23,6 +16,8 @@
     <a href="https://github.com/WXSD-Sales/WebexMeetingDemo/issues">Request Feature</a>
   </p>
 </p>
+
+*_Everything included is for demo and Proof of Concept purposes only. Your use of the site is solely at your own risk. This site may contain links to third party content, which we do not warrant, endorse, or assume liability for. These demos are for Cisco Webex usecases, but are not Official Cisco Webex Branded demos._
 
 <!-- TABLE OF CONTENTS -->
 <details open="open">
@@ -54,7 +49,7 @@
 
 In this demo we tried to show you the simplicity of embeding Webex Meeting experience into your complex react application with only few lines of code!
 
-### Built With
+### Dependencies
 
 This demo is built with bunch of latest technologies offered by Webex!
 
@@ -116,17 +111,3 @@ Arash Koushkebaghi - [LinkedIn](https://www.linkedin.com/in/arash-koushkebaghi-9
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-
-[contributors-shield]: https://img.shields.io/github/contributors/WXSD-Sales/WebexMeetingDemo.svg?style=for-the-badge
-[contributors-url]: https://github.com/WXSD-Sales/WebexMeetingDemo/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/WXSD-Sales/WebexMeetingDemo.svg?style=for-the-badge
-[forks-url]: https://github.com/WXSD-Sales/WebexMeetingDemo/network/members
-[stars-shield]: https://img.shields.io/github/stars/WXSD-Sales/WebexMeetingDemo.svg?style=for-the-badge
-[stars-url]: https://github.com/WXSD-Sales/WebexMeetingDemo/stargazers
-[issues-shield]: https://img.shields.io/github/issues/WXSD-Sales/WebexMeetingDemo.svg?style=for-the-badge
-[issues-url]: https://github.com/WXSD-Sales/WebexMeetingDemo/issues
-[license-shield]: https://img.shields.io/github/license/WXSD-Sales/WebexMeetingDemo.svg?style=for-the-badge
-[license-url]: https://github.com/WXSD-Sales/WebexMeetingDemo/blob/master/LICENSE.txt
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://www.linkedin.com/in/arash-koushkebaghi-9b1701a4/
-[product-screenshot]: assets/images/WebexMeetingDemo.png
